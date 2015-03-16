@@ -1,0 +1,23 @@
+{
+  "name": "nodebb-plugin-latchfornodebb",
+  "version": "0.0.1",
+  "description": "This plugin implements Latch (https://latch.elevenpaths.com/) in your NodeBB forum",
+  "main": "library.js",
+  "repository": {
+    "type": "git",
+    "url": "??"
+  },
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "latch",
+    "shell"
+  ],
+  "author": {
+    "name": "Alberto Segura",
+    "email": "alberto.segura.delgado@gmail.com"
+  },
+  "bugs": {
+    "url": "??/issues"
+  }
+}

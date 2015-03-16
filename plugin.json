@@ -1,0 +1,14 @@
+{
+	"id": "nodebb-plugin-latchfornodebb",
+	"name": "Latch for NodeBB",
+	"description": "This plugin implements Latch (https://latch.elevenpaths.com/) in your NodeBB forum",
+	"url": "",
+	"library": "./library.js",
+
+	"hooks": [
+		{ "hook": "filter:auth.init", "method": "getAuth", "callbacked": true }
+	],
+	"scripts": [
+		"public/js/client.js"
+	]
+}
