@@ -4,7 +4,7 @@
 
 This plugin implements Latch (https://latch.elevenpaths.com/) in your NodeBB forum
 
-Get your api keys on https://latch.elevenpaths.com/, and put it on library.js
+Get your api keys on https://latch.elevenpaths.com/, ( must sign as developer ) and put it on library.js
 
 Latch is a online service to protect your accounts, with this plugin you can lock your nodebb account from your mobile device
 
