@@ -4,6 +4,7 @@ var User = module.parent.require('./user');
 var Topic = module.parent.require('./topics');
 var SocketPlugins = module.parent.require('./socket.io/plugins');
 var Latch = require('./latchsdk/index.js');
+var winston = module.parent.require('winston');
 
 // PUT YOUR APP KEYS HERE! (Get it on https://latch.elevenpaths.com/)
 var SECRETKEY = "";
@@ -19,6 +20,10 @@ plugin.getAuth = function(object, callback)
 
 
 SocketPlugins.latchPairRequest = function (socket, data, callback) {
+  if (!APPID || !SECRETKEY) {
+    return winston.warn('[latch] APPID and SECRETKEY not set');
+  }
+
     // El usuario que hace la peticion me viene en socket.uid
     
     Latch.init({ appId: APPID, secretKey: SECRETKEY });
@@ -41,6 +46,10 @@ SocketPlugins.latchPairRequest = function (socket, data, callback) {
 };
 
 SocketPlugins.latchUnPairRequest = function (socket, data, callback) {
+  if (!APPID || !SECRETKEY) {
+    return winston.warn('[latch] APPID and SECRETKEY not set');
+  }
+
   Latch.init({ appId: APPID, secretKey: SECRETKEY });
   User.getUserField(socket.uid, "latchId", function(err, userData){
     //console.log(userData);
@@ -64,6 +73,10 @@ SocketPlugins.latchUnPairRequest = function (socket, data, callback) {
 
 
 SocketPlugins.latchStatus = function (socket, data, callback) {
+  if (!APPID || !SECRETKEY) {
+    return winston.warn('[latch] APPID and SECRETKEY not set');
+  }
+
   Latch.init({ appId: APPID, secretKey: SECRETKEY });
   User.getUserField(socket.uid, "latchId", function(err, userData){
     //console.log(userData);
