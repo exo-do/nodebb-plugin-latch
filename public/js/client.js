@@ -11,7 +11,9 @@
 				//var loQueHabia = $(".col-md-5").html();
 
 				templates.parse('partials/latch', {}, function(html) {
-					$(".col-md-5").last().append(html);
+					translator.translate(html, function(html) {
+						$(".col-md-5").last().append(html);
+					});
 				});
 
 				$("#latchPairBtn").on("click", function(){
