@@ -5,7 +5,7 @@
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "??"
+    "url": "https://github.com/exo-do/nodebb-plugin-latch"
   },
   "keywords": [
     "nodebb",
@@ -18,6 +18,6 @@
     "email": "alberto.segura.delgado@gmail.com"
   },
   "bugs": {
-    "url": "??/issues"
+    "url": "https://github.com/exo-do/nodebb-plugin-latch/issues"
   }
 }

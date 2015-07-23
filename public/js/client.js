@@ -9,10 +9,10 @@
 			if( document.URL.indexOf("/user/")> -1 && document.URL.indexOf("/edit")> -1 && $(".col-md-5") )
 			{
 				//var loQueHabia = $(".col-md-5").html();
-				var inputsLatch = '<br><img src="http://www.channelbiz.es/wp-content/uploads/2013/12/latch.jpg" width="100" height="44"><br> <div class="control-group"><label class="control-label" for="inputLatchPairCode">Código de Pareo Latch</label><div class="input-group"><input class="form-control" type="text" id="latchPairCode" placeholder="Codigo de pareo" value="" style="width:300px"><span class="input-group-addon"><span id="password-notify"></span></span></div></div>';
-				inputsLatch += '<a id="latchPairBtn" href="#" class="btn btn-primary"><i class="hide fa fa-spinner fa-spin"></i>Parear</a>';
-				inputsLatch += '<a id="latchUnPairBtn" href="#" class="btn btn-danger"><i class="hide fa fa-spinner fa-spin"></i>Desparear</a>';
-				$($(".col-md-5")[1]).append(inputsLatch);
+
+				templates.parse('partials/latch', {}, function(html) {
+					$(".col-md-5").last().append(html);
+				});
 
 				$("#latchPairBtn").on("click", function(){
 					socket.emit('plugins.latchPairRequest',{ latchcode:$("#latchPairCode").val() }, function(err, data){
