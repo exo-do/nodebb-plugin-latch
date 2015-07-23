@@ -8,31 +8,47 @@
 			// mostramos el input y demas para el pareo
 			if( document.URL.indexOf("/user/")> -1 && document.URL.indexOf("/edit")> -1 && $(".col-md-5") )
 			{
-				//var loQueHabia = $(".col-md-5").html();
-				var inputsLatch = '<br><img src="http://www.channelbiz.es/wp-content/uploads/2013/12/latch.jpg" width="100" height="44"><br> <div class="control-group"><label class="control-label" for="inputLatchPairCode">Código de Pareo Latch</label><div class="input-group"><input class="form-control" type="text" id="latchPairCode" placeholder="Codigo de pareo" value="" style="width:300px"><span class="input-group-addon"><span id="password-notify"></span></span></div></div>';
-				inputsLatch += '<a id="latchPairBtn" href="#" class="btn btn-primary"><i class="hide fa fa-spinner fa-spin"></i>Parear</a>';
-				inputsLatch += '<a id="latchUnPairBtn" href="#" class="btn btn-danger"><i class="hide fa fa-spinner fa-spin"></i>Desparear</a>';
-				$($(".col-md-5")[1]).append(inputsLatch);
+				require(['translator'], function(translator) {
+					//var loQueHabia = $(".col-md-5").html();
 
-				$("#latchPairBtn").on("click", function(){
-					socket.emit('plugins.latchPairRequest',{ latchcode:$("#latchPairCode").val() }, function(err, data){
-						if(err)
-						{
-							alert("No se pudo parear..");
-						}
-						else
-							alert("Pareado Correctamente!");
+					templates.parse('partials/latch', {}, function(html) {
+						translator.translate(html, function(html) {
+							$(".col-md-5").last().append(html);
+						});
 					});
-				});
 
-				$("#latchUnPairBtn").on("click", function(){
-					socket.emit('plugins.latchUnPairRequest',{}, function(err, data){
-						if(err)
-						{
-							alert("No se pudo desparear..");
-						}
-						else
-							alert("Despareado Correctamente!");
+					$("#latchPairBtn").on("click", function(){
+						socket.emit('plugins.latchPairRequest',{ latchcode:$("#latchPairCode").val() }, function(err, data){
+							if(err)
+							{
+								translator.translate('[[latch:pair.failure]]', function(translated) {
+									alert(translated);
+								});
+							}
+							else
+							{
+								translator.translate('[[latch:pair.success]]', function(translated) {
+									alert(translated);
+								});
+							}
+						});
+					});
+
+					$("#latchUnPairBtn").on("click", function(){
+						socket.emit('plugins.latchUnPairRequest',{}, function(err, data){
+							if(err)
+							{
+								translator.translate('[[latch:unpair.failure]]', function(translated) {
+									alert(translated);
+								});
+							}
+							else
+							{
+								translator.translate('[[latch:unpair.success]]', function(translated) {
+									alert(translated);
+								});
+							}
+						});
 					});
 				});
 			}

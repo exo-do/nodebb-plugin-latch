@@ -1,0 +1,10 @@
+{
+	"pair": "Parear",
+	"unpair": "Desparear",
+	"code": "Código de Pareo Latch",
+
+	"pair.failure": "No se pudo parear..",
+	"pair.success": "Pareado Correctamente!",
+	"unpair.failure": "No se pudo desparear..",
+	"unpair.success": "Despareado Correctamente!"
+}
