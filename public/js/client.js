@@ -8,33 +8,47 @@
 			// mostramos el input y demas para el pareo
 			if( document.URL.indexOf("/user/")> -1 && document.URL.indexOf("/edit")> -1 && $(".col-md-5") )
 			{
-				//var loQueHabia = $(".col-md-5").html();
+				require(['translator'], function(translator) {
+					//var loQueHabia = $(".col-md-5").html();
 
-				templates.parse('partials/latch', {}, function(html) {
-					translator.translate(html, function(html) {
-						$(".col-md-5").last().append(html);
+					templates.parse('partials/latch', {}, function(html) {
+						translator.translate(html, function(html) {
+							$(".col-md-5").last().append(html);
+						});
 					});
-				});
 
-				$("#latchPairBtn").on("click", function(){
-					socket.emit('plugins.latchPairRequest',{ latchcode:$("#latchPairCode").val() }, function(err, data){
-						if(err)
-						{
-							alert("No se pudo parear..");
-						}
-						else
-							alert("Pareado Correctamente!");
+					$("#latchPairBtn").on("click", function(){
+						socket.emit('plugins.latchPairRequest',{ latchcode:$("#latchPairCode").val() }, function(err, data){
+							if(err)
+							{
+								translator.translate('[[latch:pair.failure]]', function(translated) {
+									alert(translated);
+								});
+							}
+							else
+							{
+								translator.translate('[[latch:pair.success]]', function(translated) {
+									alert(translated);
+								});
+							}
+						});
 					});
-				});
 
-				$("#latchUnPairBtn").on("click", function(){
-					socket.emit('plugins.latchUnPairRequest',{}, function(err, data){
-						if(err)
-						{
-							alert("No se pudo desparear..");
-						}
-						else
-							alert("Despareado Correctamente!");
+					$("#latchUnPairBtn").on("click", function(){
+						socket.emit('plugins.latchUnPairRequest',{}, function(err, data){
+							if(err)
+							{
+								translator.translate('[[latch:unpair.failure]]', function(translated) {
+									alert(translated);
+								});
+							}
+							else
+							{
+								translator.translate('[[latch:unpair.success]]', function(translated) {
+									alert(translated);
+								});
+							}
+						});
 					});
 				});
 			}

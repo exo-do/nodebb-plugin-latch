@@ -1,5 +1,10 @@
 {
 	"pair": "Pair",
 	"unpair": "Unpair",
-	"code": "Pairing Code for Latch"
+	"code": "Pairing Code for Latch",
+
+	"pair.failure": "Could not pair...",
+	"pair.success": "Pair complete!",
+	"unpair.failure": "Could not unpair...",
+	"unpair.success": "Unpairing complete!"
 }
